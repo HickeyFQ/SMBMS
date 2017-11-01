@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+<!-- 引入database 数据库连接配置文件 -->
+<properties resource="database.properties" />
+	
+	<!-- 引入 配置log4j 文件 -->
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	<typeAliases>
+		<package name="cn.jbit.smbms.jopo" />
+	</typeAliases>
+	<!-- 配置 mybatis 多套运行环境 -->
+	<environments default="smbmsTest">
+		<environment id="smbmsTest">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="cn/jbit/smbms/dao/UserMapper.xml"/> 
+		<!-- <package name="cn.jbit.smbms.dao"/> -->
+	</mappers>
+	
+</configuration>
